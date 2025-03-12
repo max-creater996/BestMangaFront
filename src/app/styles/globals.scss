@@ -1,0 +1,83 @@
+@import "breakpoints";
+@import "variables";
+@import "container";
+
+/* Переменные */
+:root {
+  /* Цвета */
+  --color-primary: #0070f3;
+  --color-primary-hover: #005bb5;
+  --color-success: #28a745;
+  --color-success-hover: #269e42;
+  --color-warning: #f5a623;
+  --color-error: #dc3545;
+
+  /* Градации серого */
+  --color-gray-100: #2b3a58;
+  --color-gray-60: #999;
+  --color-gray-50: #888;
+  --color-gray-20: #dcddde;
+  --color-gray-10: #f9f9f9;
+
+  /* Базовые цвета */
+  --color-black: #040404;
+  --color-white: #ffffff;
+  --color-disabled: #808080;
+
+  /* Радиусы */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Отступы */
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+}
+
+/* Глобальный сброс стилей */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  color: var(--color-gray-100);
+  font-family: "Inter", Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-white);
+  font-size: clamp(14px, 1vw, 16px);
+  line-height: 1.5;
+  color: var(--color-gray-100);
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-primary);
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--color-primary-hover);
+  }
+}
+
+ul, ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Глобальный контейнер */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}

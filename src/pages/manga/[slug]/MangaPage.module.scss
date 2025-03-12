@@ -1,0 +1,14 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+.loading {
+  text-align: center;
+  font-size: 18px;
+  color: gray;
+  margin-top: 20px;
+}

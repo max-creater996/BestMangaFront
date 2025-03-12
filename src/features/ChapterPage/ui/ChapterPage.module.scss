@@ -1,0 +1,65 @@
+.readerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chapterTitle {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.pagesContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.imageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.mangaPage {
+  width: 100%;
+  max-width: 800px;
+  object-fit: contain;
+}
+
+.reloadButton {
+  background-color: #ff5252;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.reloadButton:hover {
+  background-color: #ff7878;
+}
+
+.navigationButtons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.nextChapterButton, .backToTitleButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+}
+
+.backToTitleButton {
+  background-color: #35dcc3;
+}

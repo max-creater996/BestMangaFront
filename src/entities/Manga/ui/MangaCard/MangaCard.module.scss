@@ -1,0 +1,49 @@
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.cardImageWrapper {
+  display: block;
+}
+
+.cardImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.cardContent {
+  padding: 10px;
+}
+
+.cardTextWrapper {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.status {
+  font-size: 0.9em;
+  color: gray;
+}
+
+.rating {
+  font-size: 0.9em;
+}
+
+.chapters {
+  font-size: 0.9em;
+  font-weight: bold;
+}

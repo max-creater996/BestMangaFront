@@ -1,0 +1,13 @@
+.root{
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  .authText{
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-decoration: none;
+    color: #040404;
+  }
+}

@@ -1,0 +1,47 @@
+$xxl: 1862px; // 1400px * 1.33
+$xl: 1596px;  // 1200px * 1.33
+$lg: 1319px;  // 992px * 1.33
+$md: 1022px;  // 768px * 1.33
+$sm: 798px;   // 600px * 1.33
+$xs: 452px;   // 340px * 1.33
+
+// Equivalent to XXL - 1862px
+@mixin ultra-wide-desktop {
+  @media (max-width: $xxl) {
+    @content;
+  }
+}
+
+// Equivalent to XL - 1596px
+@mixin desktop {
+  @media (max-width: $xl) {
+    @content;
+  }
+}
+
+// Equivalent to L - 1319px
+@mixin small-desktop {
+  @media (max-width: $lg) {
+    @content;
+  }
+}
+
+// Equivalent to M - 1022px
+@mixin tablet {
+  @media (max-width: $md) {
+    @content;
+  }
+}
+
+// Equivalent to S - 798px
+@mixin mobile {
+  @media (max-width: $sm) {
+    @content;
+  }
+}
+
+@mixin small-mobile {
+  @media (max-width: $xs) {
+    @content;
+  }
+}
