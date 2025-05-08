@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import s from "./MainLayout.module.scss";
 import {Header} from "~/widgets/Header";
+import { Toaster } from 'vue-sonner'
 </script>
 
 <template>
   <div :class="s.root">
-    <Header />
-    <slot />  <!-- Здесь будут рендериться дочерние компоненты -->
+    <div :class="s.container">
+      <Toaster theme="dark"/>
+      <Header/>
+      <slot/>
+    </div>
   </div>
 </template>

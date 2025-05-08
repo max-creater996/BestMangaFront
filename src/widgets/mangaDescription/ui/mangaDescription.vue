@@ -11,23 +11,22 @@ const totalLikes = ref(manga.total_likes);
 const totalDislikes = ref(manga.total_dislikes);
 const liked = ref(manga.liked);
 const disliked = ref(manga.disliked);
-const likeSuccess = ref();
-const dislikeSuccess = ref();
+const likeSuccess = ref<boolean>();
+const dislikeSuccess = ref<boolean>();
 const toggleLike = async () => {
   if (liked.value) {
-
-    await mangaStore.addLike(manga.id).then(res=>{
+    await mangaStore.addLike(manga.id).then(() => {
       likeSuccess.value = true;
     });
-    if (likeSuccess) {
+    if (likeSuccess.value) {
       totalLikes.value--;
       liked.value = false;
     }
   } else {
-    await mangaStore.addLike(manga.id).then(res=>{
+    await mangaStore.addLike(manga.id).then(()=>{
       likeSuccess.value = true;
     });
-    if (likeSuccess) {
+    if (likeSuccess.value) {
       totalLikes.value++;
       liked.value = true;
       if (disliked.value) {
@@ -40,18 +39,18 @@ const toggleLike = async () => {
 
 const toggleDislike = async () => {
   if (disliked.value) {
-    await mangaStore.addDisLike(manga.id).then(res=>{
+    await mangaStore.addDisLike(manga.id).then(()=>{
       dislikeSuccess.value = true;
     });
-    if (dislikeSuccess) {
+    if (dislikeSuccess.value) {
       totalDislikes.value--;
       disliked.value = false;
     }
   } else {
-    await mangaStore.addDisLike(manga.id).then(res=>{
+    await mangaStore.addDisLike(manga.id).then(()=>{
       dislikeSuccess.value = true;
     });
-    if (dislikeSuccess) {
+    if (dislikeSuccess.value) {
       totalDislikes.value++;
       disliked.value = true;
       if (liked.value) {
@@ -66,7 +65,7 @@ const toggleDislike = async () => {
 <template>
   <div :class="styles.card">
     <img
-        :src="manga.manga_img || '/placeholder.jpg'"
+        :src="manga.manga_img || '/unknown.png'"
         alt="Manga Cover"
         :class="styles.image"
     />
@@ -80,6 +79,8 @@ const toggleDislike = async () => {
       </div>
 
       <p>{{ manga.manga_title || "Описание отсутствует." }}</p>
+
+      <div>{{manga.note}}</div>
 
       <!-- Блок лайков/дизлайков -->
       <div :class="styles.reactions">

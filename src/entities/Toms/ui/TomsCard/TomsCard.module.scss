@@ -1,0 +1,26 @@
+.card {
+  background: var(--color-black-background-hover);
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s ease;
+  border-left: 4px solid #007bff;
+
+  &:hover {
+    transform: translateX(5px);
+  }
+}
+
+.info {
+  display: flex;
+  align-items: center;
+}
+
+.number {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+

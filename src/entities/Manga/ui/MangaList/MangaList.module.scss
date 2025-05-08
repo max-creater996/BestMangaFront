@@ -15,11 +15,16 @@
   overflow-x: auto;
   white-space: nowrap;
   padding-bottom: 10px;
-  scrollbar-width: none; // Убирает скролл в Firefox
-  -ms-overflow-style: none; // Убирает скролл в IE/Edge
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+  cursor: grab;
 
   &::-webkit-scrollbar {
     display: none; // Убирает скролл в Chrome/Safari
+  }
+
+  &:active {
+    cursor: grabbing;
   }
 }
 

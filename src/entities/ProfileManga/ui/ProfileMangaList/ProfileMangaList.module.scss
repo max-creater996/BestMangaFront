@@ -1,0 +1,98 @@
+@use "@/app/styles/breakpoints" as *;
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  max-height: 100vh;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+
+// Горизонтальный список (лента)
+.listView {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 10px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  cursor: grab;
+  
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+// Настройка размеров карточек в listView
+.listView > * {
+  flex: 0 0 12.5%; /* 1/8 ширины контейнера */
+  margin-right: 20px;
+  min-width: 200px; // Минимальная ширина карточки
+}
+
+// 🔹 Десктоп: уменьшаем количество колонок
+@include small-desktop {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .listView > * {
+    flex: 0 0 25%; // 4 карточки в ряд
+  }
+}
+
+// 🔹 Планшеты: 2 колонки, в listView – 3 карточки в ряд
+@include tablet {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .listView > * {
+    flex: 0 0 33.33%; // 3 карточки в ряд
+  }
+}
+
+// 🔹 Мобильные: 1 колонка, в listView – 2 карточки в ряд
+@include mobile {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .listView > * {
+    flex: 0 0 50%; // 2 карточки в ряд
+  }
+}
+
+// 🔹 Маленькие экраны: только 1 карточка в ряд
+@include small-mobile {
+  .listView > * {
+    flex: 0 0 100%;
+    margin-right: 10px;
+  }
+}

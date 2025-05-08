@@ -2,6 +2,7 @@
 import s from "./CommentsModal.module.scss";
 import { defineProps, defineEmits, ref } from "vue";
 import { useCommentStore } from "~/entities/Comments/model/module/useCommentStore";
+import {CustomTextarea} from "~/shared/ui/CustomTextarea";
 
 interface Comment {
   id: number;
@@ -30,10 +31,9 @@ const submitReply = async () => {
   isSubmittingReply.value = true;
 
   try {
-    // Pass the parent comment ID as the second parameter
     await commentStore.addComment(replyContent.value, props.comment.id);
-    replyContent.value = ""; // Clear the input after submission
-    emit("startReply", null); // Close the reply form
+    replyContent.value = "";
+    emit("startReply", null);
   } finally {
     isSubmittingReply.value = false;
   }
@@ -49,21 +49,20 @@ const submitReply = async () => {
       </p>
     </div>
     <p :class="s.commentContent">{{ comment.content }}</p>
-    <button :class="s.replyButton" @click="handleReply">
-      Ответить
-    </button>
+    <button :class="s.replyButton" @click="handleReply">Ответить</button>
 
     <!-- Поле для ответа -->
     <div v-if="replyingTo === comment.id" :class="s.replySection">
-      <textarea
+      <CustomTextarea
           v-model="replyContent"
-          :class="s.replyInput"
           placeholder="Напишите ответ..."
-      ></textarea>
+          autoGrow
+          maxHeight="150px"
+      />
       <button
-        :class="s.sendReply"
-        @click="submitReply"
-        :disabled="isSubmittingReply"
+          :class="s.sendReply"
+          @click="submitReply"
+          :disabled="isSubmittingReply"
       >
         Отправить
       </button>

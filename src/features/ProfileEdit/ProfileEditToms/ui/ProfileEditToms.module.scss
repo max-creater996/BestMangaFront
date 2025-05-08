@@ -1,0 +1,61 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+
+.title {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: var(--color-white);
+}
+.addButton{
+  margin: 20px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.volumeList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.volumeItem {
+  background: var(--color-black-background-hover);
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s ease;
+  border-left: 4px solid #007bff;
+
+  &:hover {
+    transform: translateX(5px);
+  }
+}
+
+.volumeInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.volumeNumber {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-white);
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: var(--color-white);
+}
+
+.error {
+  color: #ff4444;
+  text-align: center;
+  padding: 20px;
+}

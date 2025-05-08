@@ -12,12 +12,12 @@
 }
 
 .modal {
-  background: white;
+  background: var(--color-black-background);
   padding: 20px;
   border-radius: 12px;
   width: 600px;
   max-width: 90%;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(255, 255, 255 , 0.3);
   position: relative;
 }
 
@@ -44,7 +44,7 @@
 
 /* Комментарий */
 .comment {
-  background: var(--color-gray-10);
+  background: var(--color-black-background);
   padding: 12px;
   border-radius: var(--radius-md);
   margin-bottom: 12px;
@@ -67,12 +67,12 @@
 .commentUser {
   font-weight: 600;
   font-size: 14px;
-  color: var(--color-primary);
+  color: var(--color-white);
 }
 
 .commentDate {
   font-size: 12px;
-  color: var(--color-gray-50);
+  color: var(--color-white);
 }
 
 /* Текст комментария */
@@ -80,20 +80,21 @@
   margin: 8px 0;
   font-size: 14px;
   line-height: 1.4;
+  color: var(--color-white);
 }
 
 /* Кнопка "Ответить" */
 .replyButton {
   background: none;
   border: none;
-  color: var(--color-primary);
+  color: var(--color-white);
   cursor: pointer;
   font-size: 14px;
   transition: color 0.2s;
 
   &:hover {
     text-decoration: underline;
-    color: var(--color-primary-hover);
+    color: var(--color-white);
   }
 }
 
@@ -134,7 +135,7 @@
 .commentForm {
   display: flex;
   flex-direction: column;
-  margin-top: 15px;
+  margin-top: 30px;
 }
 
 .commentInput {
@@ -162,6 +163,6 @@
 }
 
 .sendComment:disabled {
-  background: var(--color-gray-50);
+  background: var(--color-gray-100);
   cursor: not-allowed;
 }

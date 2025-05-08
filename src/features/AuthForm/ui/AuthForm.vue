@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { useUserStore } from "~/entities/user/model/module/UserStore";
+import { useUserStore } from "~/entities/user/model/module/useUserStore";
 import { useRouter } from "vue-router";
 import styles from "./AuthForm.module.scss";
-import ErrorText from "~/shared/ui/ErorText/ui/ErrorText.vue";
+import CustomTextInput from "~/shared/ui/CustomTextinput/ui/CustomTextInput.vue";
+import { ErrorText } from "~/shared/ui/ErrorText";
+import CustomButton from "~/shared/ui/CustomButton/ui/CustomButton.vue";
 
 const userStore = useUserStore();
 const router = useRouter();
@@ -32,19 +34,24 @@ const login = async () => {
 
 <template>
   <form @submit.prevent="login" :class="styles.form">
-    <label :class="styles.label">Имя пользователя</label>
-    <input v-model.trim="username" type="text" :class="styles.input" />
-    <ErrorText v-if="submitted && !isUsernameValid" message="Имя пользователя обязательно" />
+    <CustomTextInput
+        v-model="username"
+        label="Имя пользователя"
+        :error="submitted && !isUsernameValid ? 'Имя пользователя обязательно' : ''"
+    />
 
-    <label :class="styles.label">Пароль</label>
-    <input v-model.trim="password" type="password" :class="styles.input" />
-    <ErrorText v-if="submitted && !isPasswordValid" message="Пароль должен быть минимум 6 символов" />
+    <CustomTextInput
+        v-model="password"
+        type="password"
+        label="Пароль"
+        :error="submitted && !isPasswordValid ? 'Пароль должен быть минимум 6 символов' : ''"
+    />
 
-    <ErrorText v-if="serverError" :message="serverError" />
+    <ErrorText v-if="serverError" :error="serverError" />
 
-    <button type="submit" :disabled="!isValid" :class="[styles.button, { [styles.disabled]: !isValid }]">
+    <CustomButton type="submit" :disabled="!isValid">
       Войти
-    </button>
+    </CustomButton>
 
     <p :class="styles.registerLink">
       Нет аккаунта?

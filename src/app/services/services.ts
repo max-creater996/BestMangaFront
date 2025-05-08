@@ -59,6 +59,17 @@ export const apiService = {
                 throw new Error(`HTTP Error ${response.status}: ${errorText}`);
             }
 
+            if (response.status === 204) {
+                return {} as T; // Возвращаем пустой объект для 204 No Content
+            }
+
+            const contentLength = response.headers.get('content-length');
+            const contentType = response.headers.get('content-type');
+            
+            if (contentLength === '0' || !contentType?.includes('application/json')) {
+                return {} as T; // Возвращаем пустой объект если нет контента или не JSON
+            }
+
             return response.json();
         } catch (error: any) {
             console.error(`Error during API Request [${method}] ${url}:`, error.message);

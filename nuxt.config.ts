@@ -2,6 +2,13 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   srcDir: 'src/',
+  dir: {
+    public: '../public'
+  },
   devtools: { enabled: true },
-  modules: ["@pinia/nuxt"],
+  modules: [
+    '@nuxt/image',
+    "@pinia/nuxt",
+  ],
+  css: ["@/app/styles/globals.scss"],
 })

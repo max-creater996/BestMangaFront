@@ -2,10 +2,11 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import styles from "./ChapterPage.module.scss";
 import { useRoute } from "#vue-router";
-import { ReaderMenu } from "../../ReaderMenu";
+
 import { CommentsModal } from "~/entities/Comments";
 import { useCommentStore } from "~/entities/Comments/model/module/useCommentStore";
 import { useChapterStore } from "~/entities/Chapter/model/Module/useChapterStore";
+import {ReaderMenu} from "~/widgets/ReaderMenu";
 
 const route = useRoute();
 const slug = route.params.slug as string;
@@ -39,8 +40,8 @@ onMounted(() => {
 
   observer.value = new IntersectionObserver(updateCurrentPage, {
     root: null,
-    rootMargin: "0px",
-    threshold: 1,
+    rootMargin: "-45% 0px",
+    threshold: 0,
   });
 
   pageRefs.value.forEach((page) => observer.value?.observe(page));

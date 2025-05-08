@@ -5,7 +5,7 @@ import s from "./AuthHeader.module.scss"
 <template>
   <div :class="s.root" >
     <NuxtLink to="/">
-  <img src="../img/logo.jpg" height="120px"  alt="logo"/>
+  <img src="../img/logo.png" height="120px"  alt="logo"/>
     </NuxtLink>
   </div>
 </template>

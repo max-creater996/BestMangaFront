@@ -1,0 +1,64 @@
+{
+    "editor.accessibilitySupport": "on",
+    "workbench.colorTheme": "Default Dark+",
+    "workbench.preferredHighContrastColorTheme": "Default High Contrast",
+    "workbench.preferredDarkColorTheme": "Default Dark+",
+    "workbench.preferredLightColorTheme": "Default Dark+",
+    "workbench.preferredHighContrastLightColorTheme": "Default High Contrast",
+    "window.autoDetectColorScheme": true,
+    "files.associations": {
+        "*.vue": "vue"
+    },
+    "editor.tokenColorCustomizations": {
+        "[Default Dark+]": {
+            "textMateRules": [
+                {
+                    "scope": ["source.vue", "source.vue.template", "source.vue.script", "source.vue.style"],
+                    "settings": {
+                        "foreground": "#D4D4D4"
+                    }
+                },
+                {
+                    "scope": ["entity.name.tag", "punctuation.definition.tag"],
+                    "settings": {
+                        "foreground": "#569CD6"
+                    }
+                },
+                {
+                    "scope": ["string", "string.template"],
+                    "settings": {
+                        "foreground": "#CE9178"
+                    }
+                },
+                {
+                    "scope": ["comment"],
+                    "settings": {
+                        "foreground": "#6A9955"
+                    }
+                },
+                {
+                    "scope": ["variable", "variable.parameter", "variable.other"],
+                    "settings": {
+                        "foreground": "#9CDCFE"
+                    }
+                },
+                {
+                    "scope": ["keyword.control", "storage.type", "storage.modifier"],
+                    "settings": {
+                        "foreground": "#569CD6"
+                    }
+                },
+                {
+                    "scope": ["support.function", "support.function.vue"],
+                    "settings": {
+                        "foreground": "#DCDCAA"
+                    }
+                }
+            ]
+        }
+    },
+    "files.autoSaveWhenNoErrors": true,
+    "files.autoSaveWorkspaceFilesOnly": true,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000
+}

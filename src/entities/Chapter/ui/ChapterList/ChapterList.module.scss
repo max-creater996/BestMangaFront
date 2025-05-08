@@ -1,0 +1,17 @@
+.chapterList {
+    background: var(--color-black-background);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255 ,0.1);
+  }
+  
+  h2 {
+    margin-bottom: 15px;
+    font-size: 22px;
+  }
+  
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }

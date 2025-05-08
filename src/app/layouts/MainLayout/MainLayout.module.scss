@@ -1,5 +1,7 @@
 @use "@/app/styles/container" as *;
 
 .root{
-  @include container
+  .container{
+    @include container
+  }
 }

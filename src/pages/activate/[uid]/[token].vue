@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { MainLayout } from "~/app/layouts";
-import { useUserStore } from "~/entities/user/model/module/UserStore";
+import { useUserStore } from "~/entities/user/model/module/useUserStore";
 
 const userStore = useUserStore();
 const route = useRoute();

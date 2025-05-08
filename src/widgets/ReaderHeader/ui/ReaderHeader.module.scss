@@ -1,0 +1,52 @@
+.root {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  position: sticky;
+  top: 0;
+  background: var(--color-black-background);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  z-index: 10;
+
+  .authText {
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--color-white);
+    width: 120px;
+  }
+}
+
+/* Плейсхолдер, который занимает место хедера после исчезновения */
+.placeholder {
+  width: 100%;
+  display: none; /* Скрыт по умолчанию */
+}
+
+/* Анимации */
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.slide-enter-from {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.slide-enter-to {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-leave-from {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-leave-to {
+  transform: translateY(-100%);
+  opacity: 0;
+}

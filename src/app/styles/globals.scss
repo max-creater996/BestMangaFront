@@ -1,6 +1,6 @@
-@import "breakpoints";
-@import "variables";
-@import "container";
+@use "breakpoints" as *;
+@use "variables" as *;
+@use "container" as *;
 
 /* Переменные */
 :root {
@@ -21,6 +21,8 @@
 
   /* Базовые цвета */
   --color-black: #040404;
+  --color-black-background: #0b0a0a;
+  --color-black-background-hover: #1b1a1a;
   --color-white: #ffffff;
   --color-disabled: #808080;
 
@@ -41,22 +43,23 @@
 *::after {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
-  color: var(--color-gray-100);
+  color: var(--color-white);
   font-family: "Inter", Arial, sans-serif;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--color-white);
   font-size: clamp(14px, 1vw, 16px);
   line-height: 1.5;
-  color: var(--color-gray-100);
+  color: var(--color-white);
+  background: var(--color-black-background);
 }
 
 h1, h2, h3, h4, h5, h6, p {
   margin: 0;
   padding: 0;
+  text-wrap: auto;
 }
 
 a {

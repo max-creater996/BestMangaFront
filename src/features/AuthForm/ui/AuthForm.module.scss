@@ -6,7 +6,7 @@
   margin: auto;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(255, 255, 255 , 0.1);
 }
 
 .label {
@@ -28,7 +28,7 @@
 .button {
   padding: 12px;
   background: #007bff;
-  color: white;
+  color: var(--color-white);
   border: none;
   border-radius: 6px;
   cursor: pointer;

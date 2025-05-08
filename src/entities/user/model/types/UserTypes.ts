@@ -1,10 +1,14 @@
-interface UserTypes {
+export interface UserTypes {
     id: number;
-    name: string;
+    username: string;
     email: string;
     token: string;
-    writer:boolean
-    avatar?: string; // Ссылка на аватар (опционально)
-    createdAt?: string; // Дата создания аккаунта (опционально)
+    gender_choices: "мужчина" | "женщина" | null;
+    avatar_img: string | null;
+    background_img: string | null;
+    img_frame: string | null;
+    bookmarks: number[];
+    last_join: string | null;
+    is_writer: boolean | null;
+    phone: string | null;
 }
-

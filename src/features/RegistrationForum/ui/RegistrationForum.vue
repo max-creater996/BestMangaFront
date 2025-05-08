@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { useUserStore } from "~/entities/user/model/module/UserStore";
+import { useUserStore } from "~/entities/user/model/module/useUserStore";
 import { useRouter } from "vue-router";
 
 import styles from "./RegistrationForum.module.scss";
-import ErrorText from "~/shared/ui/ErorText/ui/ErrorText.vue";
-
+import {CustomTextInput} from "~/shared/ui/CustomTextinput";
+import { ErrorText } from "~/shared/ui/ErrorText";
+import CustomButton from "~/shared/ui/CustomButton/ui/CustomButton.vue";
 
 const userStore = useUserStore();
 const router = useRouter();
@@ -40,27 +41,38 @@ const register = async () => {
 
 <template>
   <form @submit.prevent="register" :class="styles.form">
-    <label :class="styles.label">Имя</label>
-    <input v-model="name" type="text" :class="styles.input" />
-    <ErrorText v-if="submitted && !isNameValid" message="Имя обязательно" />
+    <CustomTextInput
+        v-model="name"
+        label="Имя"
+        :error="submitted && !isNameValid ? 'Имя обязательно' : ''"
+    />
 
-    <label :class="styles.label">Email</label>
-    <input v-model="email" type="email" :class="styles.input" />
-    <ErrorText v-if="submitted && !isEmailValid" message="Некорректный email" />
+    <CustomTextInput
+        v-model="email"
+        type="email"
+        label="Email"
+        :error="submitted && !isEmailValid ? 'Некорректный email' : ''"
+    />
 
-    <label :class="styles.label">Пароль</label>
-    <input v-model="password" type="password" :class="styles.input" />
-    <ErrorText v-if="submitted && !isPasswordValid" message="Пароль должен быть минимум 6 символов" />
+    <CustomTextInput
+        v-model="password"
+        type="password"
+        label="Пароль"
+        :error="submitted && !isPasswordValid ? 'Пароль должен быть минимум 6 символов' : ''"
+    />
 
-    <label :class="styles.label">Повторите пароль</label>
-    <input v-model="confirmPassword" type="password" :class="styles.input" />
-    <ErrorText v-if="submitted && !isConfirmPasswordValid" message="Пароли не совпадают" />
+    <CustomTextInput
+        v-model="confirmPassword"
+        type="password"
+        label="Повторите пароль"
+        :error="submitted && !isConfirmPasswordValid ? 'Пароли не совпадают' : ''"
+    />
 
-    <ErrorText v-if="serverError" :message="serverError" />
+    <ErrorText v-if="serverError" :error="serverError" />
 
-    <button type="submit" :disabled="!isValid" :class="[styles.button, { [styles.disabled]: !isValid }]">
+    <CustomButton type="submit" :disabled="!isValid">
       Зарегистрироваться
-    </button>
+    </CustomButton>
 
     <p :class="styles.registerLink">
       Уже есть аккаунт?

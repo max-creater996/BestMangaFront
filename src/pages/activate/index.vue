@@ -26,13 +26,13 @@ import { MainLayout } from "~/app/layouts";
 .title {
   font-size: 26px;
   font-weight: bold;
-  color: #333;
+  color: var(--color-white);
   margin-bottom: 10px;
 }
 
 .message {
   font-size: 18px;
-  color: #555;
+  color: var(--color-white);
   max-width: 400px;
 }
 </style>

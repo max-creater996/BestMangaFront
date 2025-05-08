@@ -1,0 +1,16 @@
+.textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  resize: none;
+  outline: none;
+  transition: border-color 0.2s;
+  background: var(--color-black-background);
+
+  &:focus {
+    border-color: #0070f3;
+  }
+}

@@ -4,6 +4,9 @@ import { useCommentStore } from "~/entities/Comments/model/module/useCommentStor
 import { useVisibilityStore } from "~/entities/useVisibilityNav/model/useVisibilityNavStore";
 import { ref, watch, nextTick } from "vue";
 import CommentItem from "~/entities/Comments/ui/CommentItem.vue";
+import {CustomTextarea} from "~/shared/ui/CustomTextarea";
+import CustomButton from "../../../shared/ui/CustomButton/ui/CustomButton.vue";
+
 
 const commentStore = useCommentStore();
 const visibilityStore = useVisibilityStore();
@@ -13,13 +16,15 @@ watch(
     () => commentStore.commentModal,
     async (isOpen) => {
       if (isOpen) {
-        await nextTick(); // Дожидаемся обновления DOM
+        await nextTick();
         if (modalRef.value) {
           visibilityStore.addExcludedRef(modalRef.value);
         }
         commentStore.fetchComments();
       } else {
-        visibilityStore.removeExcludedRef(modalRef.value); // Удаляем ref при закрытии модалки
+        if (modalRef.value) {
+          visibilityStore.addExcludedRef(modalRef.value);
+        }
       }
     }
 );
@@ -51,7 +56,7 @@ const addComment = async () => {
   <Teleport to="body">
     <div v-if="commentStore.commentModal" :class="s.overlay" @click="closeModal">
       <div ref="modalRef" :class="s.modal" @click.stop>
-        <button :class="s.closeButton" @click="closeModal">&times;</button>
+        <CustomButton :class="s.closeButton" @click="closeModal" variant="outline">&times;</CustomButton>
         <h2>Комментарии</h2>
         <div :class="s.commentsContainer">
           <template v-if="commentStore.data.length">
@@ -67,8 +72,8 @@ const addComment = async () => {
         </div>
 
         <div :class="s.commentForm">
-          <textarea v-model="newComment" :class="s.commentInput" placeholder="Добавить комментарий..."></textarea>
-          <button :class="s.sendComment" @click="addComment" :disabled="isSubmitting">Отправить</button>
+          <CustomTextarea v-model="newComment" placeholder="Добавить комментарий..." autoGrow maxHeight="200px" />
+          <CustomButton :class="s.sendComment" @click="addComment" :disabled="isSubmitting">Отправить</CustomButton>
         </div>
       </div>
     </div>

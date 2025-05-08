@@ -44,7 +44,7 @@ export const useChapterStore = defineStore("chapter", {
             this.loading = true;
             this.error = null;
             try {
-                await apiService.post(`api/manga/chapters/${id}/like/`, null);
+                await apiService.post(`api/manga/chapters/${id}/like/`, null,{});
                 if (this.chapter && this.chapter.id === id) {
                     this.chapter.is_liked = !this.chapter.is_liked;
                     // If liked, increment the count, otherwise decrement
@@ -59,6 +59,6 @@ export const useChapterStore = defineStore("chapter", {
             } finally {
                 this.loading = false;
             }
-        }
+        },
     },
 });
