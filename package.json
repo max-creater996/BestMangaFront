@@ -12,6 +12,7 @@
   "dependencies": {
     "@nuxt/image": "^1.10.0",
     "@pinia/nuxt": "^0.10.1",
+    "@vercel/speed-insights": "^1.2.0",
     "@vueuse/core": "^12.7.0",
     "date-fns": "^4.1.0",
     "lucide-vue-next": "^0.477.0",
