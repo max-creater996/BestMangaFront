@@ -16,7 +16,8 @@ export const useUserChapterStore = defineStore("userChapter", {
             chapter_number: '',
             pages: [],
             volume: 0,
-            release: false
+            release: false,
+            new_orderliness: false
         },
         formErrors: {
             chapter_title: '',
@@ -41,7 +42,8 @@ export const useUserChapterStore = defineStore("userChapter", {
                 chapter_number: '',
                 pages: [],
                 volume: 0,
-                release: false
+                release: false,
+                new_orderliness:false
             }
             this.formErrors = {
                 chapter_title: '',
@@ -64,7 +66,7 @@ export const useUserChapterStore = defineStore("userChapter", {
                 const matchingVolume = this.volumeChoices.find(
                     v => v.name === `Том ${chapter.volume}`
                 );
-                
+
                 this.chapterForm = {
                     chapter_title: chapter.chapter_title,
                     chapter_number: String(chapter.chapter_number),
@@ -75,7 +77,8 @@ export const useUserChapterStore = defineStore("userChapter", {
                         page_number: page.page_number,
                         status: "initial"
                     })),
-                    release: chapter.release || false
+                    release: chapter.release || false,
+                    new_orderliness: false
                 }
             }
         },
@@ -236,6 +239,22 @@ export const useUserChapterStore = defineStore("userChapter", {
             } catch (error) {
                 this.error = error instanceof Error ? error.message : "Unknown error";
                 return false;
+            } finally {
+                this.loading = false;
+            }
+        },
+        async updatePagesOrderBulk(chapterId: string, data: Array<{id: number, page_number: number}>) {
+            try {
+                this.loading = true;
+                const response = await apiService.post(
+                    `/api/manga/chapter/${chapterId}/pages`,
+                    data,
+                    {}
+                );
+                return response;
+            } catch (error) {
+                console.error('Error updating pages order:', error);
+                throw error;
             } finally {
                 this.loading = false;
             }

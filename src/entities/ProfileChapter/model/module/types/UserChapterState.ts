@@ -14,6 +14,7 @@ export interface UserChapterState {
         pages: any[];
         volume: number;
         release: boolean;
+        new_orderliness: boolean;
     };
     formErrors: {
         chapter_title: string;

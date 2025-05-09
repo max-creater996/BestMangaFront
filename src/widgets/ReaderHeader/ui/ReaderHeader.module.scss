@@ -1,12 +1,33 @@
 .root {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 15px;
   position: sticky;
   top: 0;
   background: var(--color-black-background);
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   z-index: 10;
+  padding: 0 20px;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  img {
+    height: 120px;
+    width: auto;
+
+    @media (max-width: 768px) {
+      height: 80px;
+    }
+
+    @media (max-width: 480px) {
+      height: 60px;
+    }
+  }
 
   .authText {
     font-size: 24px;
@@ -16,6 +37,15 @@
     text-decoration: none;
     color: var(--color-white);
     width: 120px;
+
+    @media (max-width: 768px) {
+      font-size: 20px;
+      width: auto;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 16px;
+    }
   }
 }
 
