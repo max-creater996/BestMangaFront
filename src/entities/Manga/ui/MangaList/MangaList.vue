@@ -6,12 +6,17 @@
     @mouseup="stopDragging"
     @mouseleave="stopDragging"
   >
-    <MangaCard
+    <div v-if="loading" :class="s.loader">
+      <div :class="s.spinner"></div>
+    </div>
+    <template v-else>
+      <MangaCard
         v-for="manga in mangaList"
         :key="manga.manga.id"
         :manga="manga.manga"
         :chapter="manga"
-    />
+      />
+    </template>
   </div>
 </template>
 
@@ -29,6 +34,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  loading: {
+    type: Boolean,
+    default: false,
+  }
 });
 
 const isDragging = ref(false);
