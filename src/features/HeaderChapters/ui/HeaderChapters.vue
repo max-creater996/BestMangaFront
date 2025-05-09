@@ -46,7 +46,7 @@ const openModal = async () => {
     <div :class="styles.currentChapter">
       <span>
         <NuxtLink :to="`${currentChapter - 1}`">
-          <span v-if="currentChapter > 0" :class="styles.arrow"><MoveLeft /></span>
+          <span v-if="!chapterStore.chapter?.is_first_chapter" :class="styles.arrow"><MoveLeft /></span>
         </NuxtLink>
         <span @click="openModal">Том {{ chapterStore.chapter?.volume }} Глава {{ currentChapter }}</span>
         <NuxtLink v-if="!chapterStore.chapter?.is_last_chapter" :to="`${currentChapter + 1}`">

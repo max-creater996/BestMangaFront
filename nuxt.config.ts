@@ -11,4 +11,13 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
   ],
   css: ["@/app/styles/globals.scss"],
+  nitro: {
+    preset: 'vercel'
+  },
+  runtimeConfig: {
+    public: {
+      // публичные переменные окружения
+    },
+    // приватные переменные окружения
+  }
 })
