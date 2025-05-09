@@ -17,8 +17,8 @@ const userLink = computed(() => (userStore.user ? "/profile" : "/registration"))
 
 <template>
   <div :class="s.root">
-    <NuxtLink to="/">
-      <img src="../img/logo.png" height="120px" alt="logo" />
+    <NuxtLink to="/" :class="s.logoLink">
+      <img src="../img/logo.png" :class="s.logo" alt="logo" />
     </NuxtLink>
 
     <NuxtLink :to="userLink" :class="s.authText">
