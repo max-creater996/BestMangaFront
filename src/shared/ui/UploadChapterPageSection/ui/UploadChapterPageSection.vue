@@ -4,7 +4,7 @@ import { ErrorText } from '../../ErrorText'
 import { useImageUpload } from '@/shared/hooks/useImageUpload'
 import { toast } from 'vue-sonner'
 import styles from './UploadChapterPageSection.module.scss'
-
+import { useUserChapterStore } from '~/entities/ProfileChapter/model/module/useUserChapterStore'
 
 const props = defineProps({
   label: {
@@ -25,7 +25,6 @@ const props = defineProps({
   }
 })
 
-
 const emit = defineEmits<{
   (e: 'update:pages', pages: any[]): void
   (e: 'update:error', error: string): void
@@ -35,6 +34,7 @@ const dragOver = ref(false)
 const pages = ref<any[]>([])
 const localError = ref(props.error || '')
 const uploadId = `upload-${crypto.randomUUID()}`
+const store = useUserChapterStore()
 
 watch(() => props.initialPages, (newPages) => {
   if (newPages.length > 0 && pages.value.length === 0) {
@@ -45,7 +45,6 @@ watch(() => props.initialPages, (newPages) => {
     emit('update:pages', pages.value)
   }
 })
-
 
 watch(() => props.error, (newError) => {
   localError.value = newError
@@ -192,6 +191,8 @@ const reorderPages = (fromIndex: number, toIndex: number) => {
     pageNumber: index + 1
   }))
   emit('update:pages', pages.value)
+  // Устанавливаем флаг new_orderliness в true при изменении порядка страниц
+  store.chapterForm.new_orderliness = true
 }
 </script>
 
