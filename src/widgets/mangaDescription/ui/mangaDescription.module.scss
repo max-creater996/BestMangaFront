@@ -6,6 +6,12 @@
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.15);
   transition: transform 0.3s ease-in-out;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 }
 
 .card:hover {
@@ -18,6 +24,11 @@
   object-fit: cover;
   border-radius: 8px;
   transition: transform 0.3s ease;
+
+  @media (max-width: 480px) {
+    width: 150px;
+    height: 225px;
+  }
 }
 
 .image:hover {
@@ -26,6 +37,8 @@
 
 .content {
   flex: 1;
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 .status {
@@ -35,6 +48,14 @@
 
 .tags {
   margin: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: flex-start;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 }
 
 .tags span {
@@ -42,7 +63,6 @@
   color: var(--color-white);
   padding: 6px 12px;
   border-radius: 5px;
-  margin-right: 5px;
   font-size: 14px;
   display: inline-block;
 }
@@ -51,6 +71,11 @@
   margin-top: 15px;
   display: flex;
   gap: 10px;
+  justify-content: flex-start;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 }
 
 .likeButton,
@@ -61,6 +86,7 @@
   cursor: pointer;
   border-radius: 5px;
   transition: background 0.2s ease-in-out;
+  white-space: nowrap;
 }
 
 .likeButton {

@@ -7,6 +7,7 @@ import styles from "./RegistrationForum.module.scss";
 import {CustomTextInput} from "~/shared/ui/CustomTextinput";
 import { ErrorText } from "~/shared/ui/ErrorText";
 import CustomButton from "~/shared/ui/CustomButton/ui/CustomButton.vue";
+import {toast} from "vue-sonner";
 
 const userStore = useUserStore();
 const router = useRouter();
@@ -15,7 +16,6 @@ const email = ref("");
 const password = ref("");
 const confirmPassword = ref("");
 const submitted = ref(false);
-const serverError = ref("");
 
 const isEmailValid = computed(() => /\S+@\S+\.\S+/.test(email.value));
 const isPasswordValid = computed(() => password.value.length >= 6);
@@ -27,14 +27,17 @@ const isValid = computed(
 
 const register = async () => {
   submitted.value = true;
-  serverError.value = "";
   if (!isValid.value) return;
 
   try {
     await userStore.registerUser(email.value, name.value, password.value, confirmPassword.value);
     router.push("activate");
   } catch (error: any) {
-    serverError.value = error?.response?.data?.message || "Ошибка регистрации";
+    if (error.message === "Уже есть пользыватель с данным именем") {
+      toast.error("Пользователь с таким именем уже существует");
+    } else {
+      toast.error(error.message || "Произошла ошибка при регистрации");
+    }
   }
 };
 </script>
@@ -67,8 +70,6 @@ const register = async () => {
         label="Повторите пароль"
         :error="submitted && !isConfirmPasswordValid ? 'Пароли не совпадают' : ''"
     />
-
-    <ErrorText v-if="serverError" :error="serverError" />
 
     <CustomButton type="submit" :disabled="!isValid">
       Зарегистрироваться

@@ -89,6 +89,7 @@ const handleSubmit = async () => {
     // Если глава успешно создана/обновлена, обрабатываем страницы
     if (chapterResponse) {
       let hasErrors = false
+
       console.log('Starting page processing...')
 
       // Обрабатываем только новые страницы (пропускаем initial и delete)
@@ -120,6 +121,24 @@ const handleSubmit = async () => {
             hasErrors = true
             toast.error(`Ошибка при удалении страницы ${page.id}`)
           }
+        }
+      }
+
+      // Если был изменён порядок страниц, отправляем bulk-обновление
+      if (store.chapterForm.new_orderliness && store.chapter && store.chapter.id) {
+        try {
+          const orderData = pages.value
+              .filter(page => page.id && page.status !== 'delete')
+              .map((page, idx) => ({
+                id: Number(page.id),
+                page_number: idx + 1
+              }))
+          await store.updatePagesOrderBulk(store.chapter.id, orderData)
+          store.chapterForm.new_orderliness = false
+          toast.success('Порядок страниц успешно обновлён')
+        } catch (error) {
+          hasErrors = true
+          toast.error('Ошибка при обновлении порядка страниц')
         }
       }
 
