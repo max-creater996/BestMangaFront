@@ -73,6 +73,7 @@ const reloadImage = (index: number) => {
             :src="page.image"
             :alt="`Page ${index + 1}`"
             :class="styles.mangaPage"
+            loading="lazy"
             :id="index + 1"
             @error="handleImageError(index)"
         />
