@@ -143,7 +143,7 @@ export const useUserChapterStore = defineStore("userChapter", {
             this.loading = true;
             this.error = null;
             try {
-                const response = await apiService.get(`/api/manga/${slug}/volumes/`);
+                const response = await apiService.get(`api/manga/${slug}/volumes/`);
                 this.volumeChoices = response.map((volume: any) => ({
                     id: Number(volume.id),
                     name: `Том ${volume.volume_number}`
