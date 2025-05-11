@@ -6,6 +6,7 @@ import { useMangaStore } from "~/entities/Manga/model/module/useMangaStore";
 import { useRoute } from "#vue-router";
 import { ref } from "vue";
 import {MainLayout} from "~/app/layouts";
+import CustomLoader from "~/shared/ui/CustomLoader/ui/CustomLoader.vue";
 
 const route = useRoute();
 const slug = route.params.slug as string;
@@ -23,7 +24,7 @@ mangaStore.fetchManga(slug).then(() => {
 <template>
   <MainLayout>
     <div :class="styles.container">
-      <p v-if="isLoading" :class="styles.loading">Загрузка...</p>
+      <CustomLoader v-if="isLoading" />
       <template v-else>
         <MangaDescription />
         <MangaChapters />

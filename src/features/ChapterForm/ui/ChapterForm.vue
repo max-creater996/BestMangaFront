@@ -7,6 +7,7 @@ import { UploadChapterPageSection } from '~/shared/ui/UploadChapterPageSection'
 import { useUserChapterStore } from '~/entities/ProfileChapter/model/module/useUserChapterStore'
 import { toast } from 'vue-sonner'
 import styles from './ChapterForm.module.scss'
+import CustomLoader from "~/shared/ui/CustomLoader/ui/CustomLoader.vue";
 
 interface PageItem {
   id: string
@@ -183,69 +184,70 @@ const handleUploadError = (error: string) => {
 </script>
 
 <template>
-  <form @submit.prevent="handleSubmit" :class="styles.chapterForm">
-    <div :class="styles.formGroup">
-      <CustomTextInput
-        id="chapter-title"
-        label="Название главы"
-        v-model="store.chapterForm.chapter_title"
-        placeholder="Введите название главы..."
-        :error="store.formErrors.chapter_title"
-      />
-    </div>
-
-    <div v-if="props.chapter_number" :class="styles.formGroup">
-      <CustomTextInput
-        id="chapter-number"
-        label="Номер главы"
-        v-model="store.chapterForm.chapter_number"
-        type="number"
-        placeholder="Введите номер главы..."
-        :error="store.formErrors.chapter_number"
-        :disabled="store.isEditMode"
-      />
-    </div>
-
-    <div :class="styles.formGroup">
-      <CustomPicker
-        id="volume"
-        label="Том"
-        v-model="store.chapterForm.volume"
-        :items="store.volumeChoices || []"
-        placeholder="Выберите том..."
-        :error="store.formErrors.volume"
-      />
-    </div>
-
-    <div v-if="props.chapter_number" :class="styles.formGroup">
-      <CustomBoolean
-        id="release"
-        label="Опубликовать главу"
-        v-model="store.chapterForm.release"
-        :error="store.formErrors.release"
-      />
-    </div>
-
-    <div v-if="props.chapter_number"  :class="styles.formGroup">
-      <UploadChapterPageSection
-        label="Загрузить страницы"
-        accept="image/*"
-        :error="store.formErrors.pages?.[0] || ''"
-        @update:pages="handlePagesUpdate"
-        @update:error="handleUploadError"
-        :initial-pages="store.chapterForm.pages.length > 0 ? store.chapterForm.pages : []"
-      />
-      <div v-if="pages.length > 0" :class="styles.selectedFiles">
-        <p>Выбрано страниц: {{ pages.length }}</p>
+    <CustomLoader v-if="store.loading" />
+    <form @submit.prevent="handleSubmit" :class="styles.chapterForm">
+      <div :class="styles.formGroup">
+        <CustomTextInput
+            id="chapter-title"
+            label="Название главы"
+            v-model="store.chapterForm.chapter_title"
+            placeholder="Введите название главы..."
+            :error="store.formErrors.chapter_title"
+        />
       </div>
-    </div>
 
-    <button
-      type="submit"
-      :class="[styles.submitButton, { [styles.loading]: store.loading }]"
-      :disabled="store.loading"
-    >
-      {{ store.buttonText }}
-    </button>
-  </form>
+      <div v-if="props.chapter_number" :class="styles.formGroup">
+        <CustomTextInput
+            id="chapter-number"
+            label="Номер главы"
+            v-model="store.chapterForm.chapter_number"
+            type="number"
+            placeholder="Введите номер главы..."
+            :error="store.formErrors.chapter_number"
+            :disabled="store.isEditMode"
+        />
+      </div>
+
+      <div :class="styles.formGroup">
+        <CustomPicker
+            id="volume"
+            label="Том"
+            v-model="store.chapterForm.volume"
+            :items="store.volumeChoices || []"
+            placeholder="Выберите том..."
+            :error="store.formErrors.volume"
+        />
+      </div>
+
+      <div v-if="props.chapter_number" :class="styles.formGroup">
+        <CustomBoolean
+            id="release"
+            label="Опубликовать главу"
+            v-model="store.chapterForm.release"
+            :error="store.formErrors.release"
+        />
+      </div>
+
+      <div v-if="props.chapter_number" :class="styles.formGroup">
+        <UploadChapterPageSection
+            label="Загрузить страницы"
+            accept="image/*"
+            :error="store.formErrors.pages?.[0] || ''"
+            @update:pages="handlePagesUpdate"
+            @update:error="handleUploadError"
+            :initial-pages="store.chapterForm.pages.length > 0 ? store.chapterForm.pages : []"
+        />
+        <div v-if="pages.length > 0" :class="styles.selectedFiles">
+          <p>Выбрано страниц: {{ pages.length }}</p>
+        </div>
+      </div>
+
+      <button
+          type="submit"
+          :class="[styles.submitButton, { [styles.loading]: store.loading }]"
+          :disabled="store.loading"
+      >
+        {{ store.buttonText }}
+      </button>
+    </form>
 </template>

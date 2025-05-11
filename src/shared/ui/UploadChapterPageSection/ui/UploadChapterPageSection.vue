@@ -113,6 +113,7 @@ const processFiles = async (files: FileList | File[]) => {
       pages.value.push(newPage)
       toast.success(`Страница ${pages.value.length} успешно добавлена`)
     }
+    
     emit('update:pages', pages.value)
     localError.value = ''
     emit('update:error', '')

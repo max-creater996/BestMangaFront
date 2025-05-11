@@ -6,15 +6,13 @@
     @mouseup="stopDragging"
     @mouseleave="stopDragging"
   >
-    <div v-if="isLoading" :class="s.loader">
-      <div :class="s.spinner"></div>
-    </div>
+    <CustomLoader v-if="isLoading" size="medium" />
     <template v-else>
       <ProfileMangaCard
-          v-for="manga in mangaList"
-          :key="manga.id"
-          :manga="manga"
-          :chapter="manga.chapters"
+        v-for="manga in mangaList"
+        :key="manga.id"
+        :manga="manga"
+        :chapter="manga.chapters"
       />
     </template>
   </div>
@@ -24,6 +22,7 @@
 import { defineProps, ref } from "vue";
 import s from "./ProfileMangaList.module.scss";
 import ProfileMangaCard from "~/entities/ProfileManga/ui/ProfileMangaCard/ProfileMangaCard.vue";
+import { CustomLoader } from "~/shared/ui/CustomLoader";
 
 const props = defineProps({
   mangaList: {
