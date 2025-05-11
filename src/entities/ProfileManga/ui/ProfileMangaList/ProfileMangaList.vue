@@ -6,12 +6,17 @@
     @mouseup="stopDragging"
     @mouseleave="stopDragging"
   >
-    <ProfileMangaCard
-        v-for="manga in mangaList"
-        :key="manga.id"
-        :manga="manga"
-        :chapter="manga.chapters"
-    />
+    <div v-if="isLoading" :class="s.loader">
+      <div :class="s.spinner"></div>
+    </div>
+    <template v-else>
+      <ProfileMangaCard
+          v-for="manga in mangaList"
+          :key="manga.id"
+          :manga="manga"
+          :chapter="manga.chapters"
+      />
+    </template>
   </div>
 </template>
 
@@ -29,6 +34,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  isLoading: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const isDragging = ref(false);
@@ -43,9 +52,7 @@ const startDragging = (e) => {
   startX.value = e.pageX - container.offsetLeft;
   scrollLeft.value = container.scrollLeft;
   
-  // Изменяем курсор при захвате
   container.style.cursor = 'grabbing';
-  // Отключаем выделение текста при перетаскивании
   container.style.userSelect = 'none';
 };
 
@@ -55,7 +62,7 @@ const drag = (e) => {
   e.preventDefault();
   const container = e.currentTarget;
   const x = e.pageX - container.offsetLeft;
-  const walk = (x - startX.value) * 2; // Множитель 2 для более быстрой прокрутки
+  const walk = (x - startX.value) * 2;
   container.scrollLeft = scrollLeft.value - walk;
 };
 

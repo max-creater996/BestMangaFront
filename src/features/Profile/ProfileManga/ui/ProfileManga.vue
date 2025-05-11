@@ -18,5 +18,6 @@ onMounted(async () => {
   <ProfileMangaList
       :manga-list="userMangaStore.data && userMangaStore.data"
       :is-list-view="true"
+      :is-loading="userMangaStore.loading"
   />
 </template>
