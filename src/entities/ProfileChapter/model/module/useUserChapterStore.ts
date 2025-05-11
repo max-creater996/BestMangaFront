@@ -203,7 +203,7 @@ export const useUserChapterStore = defineStore("userChapter", {
                 }
 
                 const response = await apiService.put(
-                    `/api/manga/chapter/${this.chapter.id}/pages/${pageId}/`,
+                    `api/manga/chapter/${this.chapter.id}/pages/${pageId}/`,
                     formData
                 );
                 return response;
@@ -218,7 +218,7 @@ export const useUserChapterStore = defineStore("userChapter", {
         async deletePage(pageId: number) {
             try {
                 this.loading = true;
-                await apiService.delete(`/api/manga/chapter/${this.chapter.id}/pages/${pageId}/`);
+                await apiService.delete(`api/manga/chapter/${this.chapter.id}/pages/${pageId}`);
             } catch (error) {
                 console.error('Error deleting page:', error);
                 throw error;
@@ -247,7 +247,7 @@ export const useUserChapterStore = defineStore("userChapter", {
             try {
                 this.loading = true;
                 const response = await apiService.post(
-                    `/api/manga/chapter/${chapterId}/pages`,
+                    `api/manga/chapter/${chapterId}/pages`,
                     data,
                     {}
                 );
