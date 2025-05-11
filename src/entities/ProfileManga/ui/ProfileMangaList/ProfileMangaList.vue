@@ -22,7 +22,7 @@
 import { defineProps, ref } from "vue";
 import s from "./ProfileMangaList.module.scss";
 import ProfileMangaCard from "~/entities/ProfileManga/ui/ProfileMangaCard/ProfileMangaCard.vue";
-import { CustomLoader } from "~/shared/ui/CustomLoader";
+import CustomLoader from "~/shared/ui/CustomLoader/ui/CustomLoader.vue";
 
 const props = defineProps({
   mangaList: {
